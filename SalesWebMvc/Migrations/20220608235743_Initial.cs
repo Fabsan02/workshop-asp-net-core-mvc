@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SalesWebMvc.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initial : Migration  //Migrations serão usado para a criação das estruturas das tabelas de dados Mysql
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
