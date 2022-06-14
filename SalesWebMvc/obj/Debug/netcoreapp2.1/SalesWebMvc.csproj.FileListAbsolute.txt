@@ -68,3 +68,4 @@ C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\SalesWebM
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\SalesWebMvc.dll
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\SalesWebMvc.pdb
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\SalesWebMvc.csproj.CopyComplete
+C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Index.g.cshtml.cs

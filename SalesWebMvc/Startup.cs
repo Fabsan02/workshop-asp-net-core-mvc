@@ -47,7 +47,7 @@ namespace SalesWebMvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
-            if (env.IsDevelopment())//Testa se esta noperfil de desenvolvimento
+            if (env.IsDevelopment())//Testa se esta no perfil de desenvolvimento
             {
                 app.UseDeveloperExceptionPage();
                 seedingService.Seed();

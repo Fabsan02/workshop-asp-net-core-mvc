@@ -45,6 +45,8 @@ namespace SalesWebMvc.Data
             _context.Seller.AddRange(s1);
             _context.SalesRecord.AddRange(r1);
 
+            //feita a inclusão dos dados no banco de dados
+
             _context.SaveChanges();//salva e confirma as alterações do banco de dados....
 
         }

@@ -12,7 +12,7 @@ namespace SalesWebMvc.Models
         public Seller Seller { get; set; }//Cada venda pertence a um vendedor.
 
 
-        public SalesRecord()
+        public SalesRecord()//construtor sem argumentos
         {
 
         }

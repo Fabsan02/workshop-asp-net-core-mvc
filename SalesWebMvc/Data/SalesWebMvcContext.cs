@@ -10,7 +10,7 @@ namespace SalesWebMvc.Models
 
         }
 
-        //Add Dbset para as entidades Departamento, Vendedor,Vendas(tres entidades
+        //Add Dbset para acada entidades Departamento, Vendedor,Vendas(tres entidades
 
         public DbSet<Department> Department { get; set; }
         public DbSet<Seller>Seller { get; set; }

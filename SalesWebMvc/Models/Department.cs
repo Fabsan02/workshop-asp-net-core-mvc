@@ -35,3 +35,6 @@ namespace SalesWebMvc.Models
 
     }
 }
+
+
+//Para que o modelo seja implementado e reconhecido pelo entity framework temos que adicionar as classes DbSets em DbContext
