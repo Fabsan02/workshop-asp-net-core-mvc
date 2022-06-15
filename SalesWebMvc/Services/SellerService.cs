@@ -25,5 +25,10 @@ namespace SalesWebMvc.Services //registrar este serviço no
             return _context.Seller.ToList();//acessa a tabela de vendedores e convert em uma lista
         }
 
+        public void Insert(Seller obj)//insere um objeto no banco de dados...
+        {
+            _context.Add(obj);//adiciona um novo vendedor no banco
+            _context.SaveChanges();//salva a adição do novo vendedor(que e recebido em OBJ
+        }
     }
 }
