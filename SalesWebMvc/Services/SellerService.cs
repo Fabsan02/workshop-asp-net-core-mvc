@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Services //registrar este serviço no
@@ -18,8 +17,6 @@ namespace SalesWebMvc.Services //registrar este serviço no
             _context = context;
         }
 
-
-
         public List<Seller>FindAll() //implementar uma operação no entity framework
         {
             return _context.Seller.ToList();//acessa a tabela de vendedores e convert em uma lista
@@ -29,6 +26,25 @@ namespace SalesWebMvc.Services //registrar este serviço no
         {
             _context.Add(obj);//adiciona um novo vendedor no banco
             _context.SaveChanges();//salva a adição do novo vendedor(que e recebido em OBJ
+        }
+
+        public Seller FindById(int id)
+        {
+            return _context.Seller.FirstOrDefault(obj => obj.Id == id);
+        }
+        //Metodo remove
+
+        public void Remove(int id)
+        {
+            var obj = _context.Seller.Find(id);
+            _context.Seller.Remove(obj);//remove o objeto desejado
+            _context.SaveChanges();//confirma a remoção do objeto do banco de dados....
+
+        }
+
+        internal object FindById(object value)
+        {
+            throw new NotImplementedException();
         }
     }
 }
