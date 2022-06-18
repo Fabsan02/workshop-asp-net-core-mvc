@@ -27,7 +27,6 @@ namespace SalesWebMvc.Services //registrar este serviço no
 
         public void Insert(Seller obj)//insere um objeto no banco de dados...
         {
-            obj.Department = _context.Department.First();//associa o primeiro departamento do banco e associa ao vendedor medida temporaria.
             _context.Add(obj);//adiciona um novo vendedor no banco
             _context.SaveChanges();//salva a adição do novo vendedor(que e recebido em OBJ
         }
