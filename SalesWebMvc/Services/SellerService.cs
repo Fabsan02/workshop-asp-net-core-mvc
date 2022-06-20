@@ -1,7 +1,9 @@
-﻿using System;
+﻿using SalesWebMvc.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SalesWebMvc.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace SalesWebMvc.Services //registrar este serviço no
 {
@@ -30,7 +32,7 @@ namespace SalesWebMvc.Services //registrar este serviço no
 
         public Seller FindById(int id)
         {
-            return _context.Seller.FirstOrDefault(obj => obj.Id == id);
+            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(obj => obj.Id == id);
         }
         //Metodo remove
 
@@ -40,11 +42,6 @@ namespace SalesWebMvc.Services //registrar este serviço no
             _context.Seller.Remove(obj);//remove o objeto desejado
             _context.SaveChanges();//confirma a remoção do objeto do banco de dados....
 
-        }
-
-        internal object FindById(object value)
-        {
-            throw new NotImplementedException();
-        }
+        }       
     }
 }

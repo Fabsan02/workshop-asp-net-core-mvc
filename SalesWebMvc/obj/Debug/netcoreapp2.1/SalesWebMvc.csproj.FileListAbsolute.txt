@@ -71,3 +71,4 @@ C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Vie
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Create.g.cshtml.cs
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\SalesWebMvc.csprojAssemblyReference.cache
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Delete.g.cshtml.cs
+C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Details.g.cshtml.cs

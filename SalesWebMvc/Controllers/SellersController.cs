@@ -47,7 +47,10 @@ namespace SalesWebMvc.Controllers
                 return NotFound();//estancia uma resposta basica para caso seja nullo o valor
             }
             var obj = _sellerService.FindById(id.Value);//pega o objetoa ser deletado
-
+            if (obj == null)
+            {
+                return NotFound();
+            }
             return View(obj);
         }
         [HttpPost]
@@ -56,6 +59,20 @@ namespace SalesWebMvc.Controllers
         {
             _sellerService.Remove(id);
             return RedirectToAction(nameof(Index));//apos remover o registro retorna para a pagina index de vendedor.
+
+        }
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();//estancia uma resposta basica para caso seja nullo o valor
+            }
+            var obj = _sellerService.FindById(id.Value);//pega o objeto a ser mostrado os detalhes
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
         }
     }
 }
