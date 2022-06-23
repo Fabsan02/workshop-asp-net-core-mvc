@@ -1,9 +1,8 @@
 ﻿using SalesWebMvc.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-
+using SalesWebMvc.Services.Exceptions;
 
 namespace SalesWebMvc.Services //registrar este serviço no
 {
@@ -32,7 +31,7 @@ namespace SalesWebMvc.Services //registrar este serviço no
 
         public Seller FindById(int id)
         {
-            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(obj => obj.Id == id);
+            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(obj => obj.Id == id);//carrega o vendedor por padrao somente com _context.Seller.FirstOrDefault(obj => obj.Id == id)
         }
         //Metodo remove
 
@@ -42,6 +41,27 @@ namespace SalesWebMvc.Services //registrar este serviço no
             _context.Seller.Remove(obj);//remove o objeto desejado
             _context.SaveChanges();//confirma a remoção do objeto do banco de dados....
 
-        }       
+        } 
+        //Metodo Update
+
+        public void Update(Seller obj)//um serviço
+        {
+            if(!_context.Seller.Any(x => x.Id == obj.Id))//Verifica se no banco de dados existe um vendedor cujo o Id seja igual ao Id do objeto
+            {
+                throw new NotFoundException("Id not Found");
+            }
+            try
+            {           
+            _context.Update(obj);
+            _context.SaveChanges();
+            }
+            catch(DbUpdateConcurrencyException e)//excessao do tipo acesso a dados
+            {
+                throw new DbConcurrencyException(e.Message);
+                //usando a minha excessão em nivel de serviço para segregar as camadas, assim a camada de serviço não vai propagar uma excessao do nivel de acesso a dados
+
+            }
+        }
+
     }
 }
