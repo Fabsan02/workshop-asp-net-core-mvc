@@ -4,6 +4,8 @@ using SalesWebMvc.Services;
 using SalesWebMvc.Models.ViewModels;
 using System.Collections.Generic;
 using SalesWebMvc.Services.Exceptions;
+using System.Diagnostics;
+using System;
 
 namespace SalesWebMvc.Controllers
 {
@@ -45,12 +47,12 @@ namespace SalesWebMvc.Controllers
         {
             if(id == null)
             {
-                return NotFound();//estancia uma resposta basica para caso seja nullo o valor
+                return RedirectToAction(nameof(Error), new {message="Id not found" });//estancia uma resposta basica para caso seja nullo o valor
             }
             var obj = _sellerService.FindById(id.Value);//pega o objetoa ser deletado
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id notprovided" });
             }
             return View(obj);
         }
@@ -66,12 +68,12 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();//estancia uma resposta basica para caso seja nullo o valor
+                return RedirectToAction(nameof(Error), new { message = "Id notprovided" });//estancia uma resposta basica para caso seja nullo o valor
             }
             var obj = _sellerService.FindById(id.Value);//pega o objeto a ser mostrado os detalhes
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" }); ;
             }
             return View(obj);
         }
@@ -80,41 +82,59 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id notprovided" });
             }
             var obj = _sellerService.FindById(id.Value);//busca obejto no banco de dados
             if(obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" }); 
             }
             List<Department> departments = _departmentService.FindAll();
             SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departments = departments };//preenche os dados no formulario com o objeto existente...
             return View(viewModel);
-        } 
-        
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id,Seller seller)
+        public IActionResult Edit(int id, Seller seller)
         {
-            if (id!= seller.Id)
+            if (id != seller.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Id missmatch" });
             }
             try
-            { 
-            _sellerService.Update(seller);//essa chamada pode gerar exceptions
-            return RedirectToAction(nameof(Index));
-            }
-            catch (NotFoundException)
             {
-                return NotFound();
+                _sellerService.Update(seller);//essa chamada pode gerar exceptions
+                return RedirectToAction(nameof(Index));
             }
-            catch (DbConcurrencyException)
+            catch (ApplicationException e)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = e.Message});
+            }
+         //ApplicationException Atende os dois tratamentos abaixo se chama upcast
+
+           /*    catch (NotFoundException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message});
+            }
+            catch (DbConcurrencyException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }*/
+         }
+    
+
+       
+            public IActionResult Error(string message)
+            {
+                var viewModel = new ErrorViewModel
+                {
+                    Message = message,
+                    RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier //pega o Id interno da requisição.
+                };
+                return View(viewModel);
             }
 
         }
     }
-}
