@@ -34,7 +34,9 @@
                     <select asp-for="Seller.DepartmentId" asp-items="@(new SelectList(Model.Departments, "Id","Name"))" class="form-control"></select><!--asp-itens constroi uma lista com os items do departaments-->
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-default" />
-                    <a asp-route="Index"></a>
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
                 </div>
             </div>
         </form>
