@@ -1,8 +1,8 @@
 ﻿using SalesWebMvc.Models;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Services.Exceptions;
+using System.Threading.Tasks;
 
 namespace SalesWebMvc.Services //registrar este serviço no
 {
@@ -18,42 +18,45 @@ namespace SalesWebMvc.Services //registrar este serviço no
             _context = context;
         }
 
-        public List<Seller>FindAll() //implementar uma operação no entity framework
+        public async Task< List<Seller>>FindAllAsync() //implementar uma operação no entity framework
         {
-            return _context.Seller.ToList();//acessa a tabela de vendedores e convert em uma lista
+            return await _context.Seller.ToListAsync();//acessa a tabela de vendedores e convert em uma lista(acessa o banco de dados)
         }
 
-        public void Insert(Seller obj)//insere um objeto no banco de dados...
+       // public void Insert(Seller obj)//insere um objeto no banco de dados..forma Sincrona
+        public async Task InsertAsync(Seller obj)//insere um objeto no banco de dados...Forma Assincrona
         {
-            _context.Add(obj);//adiciona um novo vendedor no banco
-            _context.SaveChanges();//salva a adição do novo vendedor(que e recebido em OBJ
+            _context.Add(obj);//e uma operação feita somente em memoria
+            await _context.SaveChangesAsync();//acessa e atualiza o banco de dados ( SaveChanges() forma Sincrona)
         }
 
-        public Seller FindById(int id)
+        public async Task< Seller> FindByIdAsync(int id)
         {
-            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(obj => obj.Id == id);//carrega o vendedor por padrao somente com _context.Seller.FirstOrDefault(obj => obj.Id == id)
+            return await _context.Seller.Include(obj => obj.Department).FirstOrDefaultAsync(obj => obj.Id == id);//acessa o banco de dados com FirstOrDefault(obj => obj.Id == id)
         }
+
         //Metodo remove
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var obj = _context.Seller.Find(id);
+            var obj = await _context.Seller.FindAsync(id);
             _context.Seller.Remove(obj);//remove o objeto desejado
-            _context.SaveChanges();//confirma a remoção do objeto do banco de dados....
+            await _context.SaveChangesAsync();//confirma a remoção do objeto do banco de dados....
 
         } 
         //Metodo Update
 
-        public void Update(Seller obj)//um serviço
+        public async Task Update(Seller obj)//um serviço
         {
-            if(!_context.Seller.Any(x => x.Id == obj.Id))//Verifica se no banco de dados existe um vendedor cujo o Id seja igual ao Id do objeto
+            bool hasAny = await _context.Seller.AnyAsync(x => x.Id == obj.Id);
+            if (!hasAny)//Verifica se no banco de dados existe um vendedor cujo o Id seja igual ao Id do objeto
             {
                 throw new NotFoundException("Id not Found");
             }
             try
             {           
             _context.Update(obj);
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
             }
             catch(DbUpdateConcurrencyException e)//excessao do tipo acesso a dados
             {
@@ -62,6 +65,5 @@ namespace SalesWebMvc.Services //registrar este serviço no
 
             }
         }
-
     }
 }
