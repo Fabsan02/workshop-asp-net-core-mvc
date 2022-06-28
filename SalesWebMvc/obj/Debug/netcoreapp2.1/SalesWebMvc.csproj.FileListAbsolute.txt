@@ -73,3 +73,6 @@ C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\SalesWebM
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Delete.g.cshtml.cs
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Details.g.cshtml.cs
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Edit.g.cshtml.cs
+C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\SalesRecords\index.g.cshtml.cs
+C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\SalesRecords\SimpleSearch.g.cshtml.cs
+C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\SalesRecords\GroupingSearch.g.cshtml.cs
