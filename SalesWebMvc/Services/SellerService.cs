@@ -39,11 +39,20 @@ namespace SalesWebMvc.Services //registrar este serviço no
 
         public async Task RemoveAsync(int id)
         {
-            var obj = await _context.Seller.FindAsync(id);
-            _context.Seller.Remove(obj);//remove o objeto desejado
-            await _context.SaveChangesAsync();//confirma a remoção do objeto do banco de dados....
+            try
+            { 
 
-        } 
+                var obj = await _context.Seller.FindAsync(id);
+                _context.Seller.Remove(obj);//remove o objeto desejado
+                await _context.SaveChangesAsync();//confirma a remoção do objeto do banco de dados....
+            }
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
+        }
+
+       
         //Metodo Update
 
         public async Task Update(Seller obj)//um serviço
@@ -55,7 +64,7 @@ namespace SalesWebMvc.Services //registrar este serviço no
             }
             try
             {           
-            _context.Update(obj);
+                 _context.Update(obj);
            await _context.SaveChangesAsync();
             }
             catch(DbUpdateConcurrencyException e)//excessao do tipo acesso a dados
