@@ -76,5 +76,3 @@ C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Vie
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\SalesRecords\index.g.cshtml.cs
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\SalesRecords\SimpleSearch.g.cshtml.cs
 C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\SalesRecords\GroupingSearch.g.cshtml.cs
-C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Produtos\Index.g.cshtml.cs
-C:\Users\fabsa\Desktop\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Categorias\Index.g.cshtml.cs
