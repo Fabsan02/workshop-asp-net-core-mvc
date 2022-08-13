@@ -28,7 +28,8 @@ namespace SalesWebMvc.Services
         }*/
 
         //Assincrona
-        public async Task <List<Department>> FindAllAsync(){      
+        public async Task <List<Department>> FindAllAsync()
+        {      
             return await _context.Department.OrderBy(x => x.Name).ToListAsync();//a chamada to list executa a chamada e transforma o resultado para list(ToList() e uma operação Sincrona) e mudamos para ToListAsync, assim nao bloqueia a aplicação.
         }
 
