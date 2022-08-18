@@ -9,11 +9,11 @@ using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Controllers
 {
-    public class DepartmentsController : Controller //um controle que herda da classe controller
+    public class DepartmentsController : Controller
     {
         private readonly SalesWebMvcContext _context;
 
-        public DepartmentsController(SalesWebMvcContext context)//construtor para injeção de dependencias
+        public DepartmentsController(SalesWebMvcContext context)
         {
             _context = context;
         }
