@@ -1,5 +1,6 @@
 ﻿using SalesWebMvc.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SalesWebMvc.Models
@@ -13,7 +14,7 @@ namespace SalesWebMvc.Models
         public double Amount { get; set; }
         public SaleStatus status { get; set; }
         public Seller Seller { get; set; }//Cada venda pertence a um vendedor.
-
+        public ICollection<Product> Product = new List<Product> ( );
 
         public SalesRecord()//construtor sem argumentos
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Services.Exceptions;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace SalesWebMvc.Services //registrar este serviço no
 {
@@ -20,7 +21,7 @@ namespace SalesWebMvc.Services //registrar este serviço no
 
         public async Task< List<Product>>FindAllAsync() //implementar uma operação no entity framework
         {
-            return await _context.Products.ToListAsync();//acessa a tabela de vendedores e convert em uma lista(acessa o banco de dados)
+            return await _context.Products.ToListAsync();//acessa a tabela de produtos e convert em uma lista iportada do (acessa o banco de dados)
         }
 
        // public void Insert(Seller obj)//insere um objeto no banco de dados..forma Sincrona

@@ -1,8 +1,33 @@
-﻿
+﻿@model IEnumerable<SalesWebMvc.Models.Product>
 @{
     ViewData["Title"] = "Products";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<p>Products Index Page</p>
+<p>
+    <a asp-action="Create" class="btn btn-default">Create New</a>
+</p>
+
+<table class="table table-striped table-hover" >
+    <thead>
+        <tr>
+            <th>
+                @Html.( model => model.Code )
+            </th>
+            <th>
+                @Html.( model => model.Name )
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model )
+        {
+         <tr>
+            <td>
+
+            </td>
+         </tr>
+        }
+    </tbody>
+</table>
